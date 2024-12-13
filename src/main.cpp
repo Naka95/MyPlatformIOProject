@@ -1,18 +1,20 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+int ledPin = 23;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  ledcAttachPin(ledPin, 0);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-}
+  for (int dutyCycle = 0; dutyCycle <= 255; dutyCycle++) {
+    ledcWrite(0, dutyCycle);
+    delay(10);
+  }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  for (int dutyCycle = 255; dutyCycle >= 0; dutyCycle--) {
+    ledcWrite(0, dutyCycle); // decrease brightness from 255 to 0
+    delay(10);
+  }
+
 }
