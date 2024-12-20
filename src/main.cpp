@@ -21,7 +21,7 @@ void setup() {
     pinMode(Led7, OUTPUT);
     pinMode(Led8, OUTPUT);
 
-    Serial.begin(9600); // For debugging
+    Serial.begin(9600); 
 }
 
 void loop() {
@@ -46,65 +46,65 @@ void loop() {
     digitalWrite(Led7, LOW);
     digitalWrite(Led8, LOW);
 
-    if (range1 >= 100 && range2 < 100) {
-        // LEDs for range1 (Odd-numbered LEDs) are ON only if range2 is below 100
-        if (range1 >= 100) {
+    if (range1 >= 10 && range1 <= 3999) {
+        // LEDs for range1 (Odd-numbered LEDs) 
+        if (range1 >= 1000) {
             digitalWrite(Led1, HIGH);
         }
-        if (range1 >= 1000) {
-            digitalWrite(Led3, HIGH);
-        }
         if (range1 >= 2000) {
-            digitalWrite(Led5, HIGH);
+            digitalWrite(Led3, HIGH);
         }
         if (range1 >= 3000) {
+            digitalWrite(Led5, HIGH);
+        }
+        if (range1 >= 4000) {
             digitalWrite(Led7, HIGH);
         }
     }
 
-    if (range2 >= 100) {
-        // LEDs for range2 (Even-numbered LEDs) turn on and turn off odd-numbered LEDs
-        if (range2 >= 100) {
-            digitalWrite(Led1, LOW);
-            digitalWrite(Led2, HIGH);
-            digitalWrite(Led3, HIGH);
-            digitalWrite(Led4, LOW);
-            digitalWrite(Led5, HIGH);
-            digitalWrite(Led6, LOW);
+    if (range1 == 4000 && range2 <= 10) {
+        //Do tec light when range2 0%
+            digitalWrite(Led8, HIGH);
+            delay(20);
             digitalWrite(Led7, HIGH);
-            digitalWrite(Led8, LOW); 
-        }
-        if (range2 >= 1000) {
-            digitalWrite(Led1, LOW);
-            digitalWrite(Led2, HIGH);
-            digitalWrite(Led3, LOW);
+            delay(20);
+            digitalWrite(Led6, HIGH);
+            delay(20);
+            digitalWrite(Led5, HIGH);
+            delay(20);
             digitalWrite(Led4, HIGH);
+            delay(20);
+            digitalWrite(Led3, HIGH);
+            delay(20);
+            digitalWrite(Led2, HIGH);
+            delay(20);
+            digitalWrite(Led1, HIGH);
+            delay(20);
+    }
+
+    if (range1 == 4000 && range2 >= 5) {
+        //When range1 100% but range2 above 0%
+            digitalWrite(Led1, HIGH);
+            digitalWrite(Led3, HIGH);
             digitalWrite(Led5, HIGH);
-            digitalWrite(Led6, LOW);
             digitalWrite(Led7, HIGH);
-            digitalWrite(Led8, LOW);
+    }
+
+    if (range2 >= 10) {
+        // LEDs for range2 (Even-numbered LEDs) 
+        if (range2 >= 1000) {
+            digitalWrite(Led2, HIGH); 
         }
         if (range2 >= 2000) {
-            digitalWrite(Led1, LOW);
-            digitalWrite(Led2, HIGH);
-            digitalWrite(Led3, LOW);
-            digitalWrite(Led4, HIGH);
-            digitalWrite(Led5, LOW);
-            digitalWrite(Led6, HIGH);
-            digitalWrite(Led7, HIGH);
-            digitalWrite(Led8, LOW);
+            digitalWrite(Led4, HIGH); 
         }
         if (range2 >= 3000) {
-            digitalWrite(Led1, LOW);
-            digitalWrite(Led2, HIGH);
-            digitalWrite(Led3, LOW);
-            digitalWrite(Led4, HIGH);
-            digitalWrite(Led5, LOW);
-            digitalWrite(Led6, HIGH);
-            digitalWrite(Led7, LOW);
-            digitalWrite(Led8, HIGH);
+            digitalWrite(Led6, HIGH); 
+        }
+        if (range2 >= 4000) {
+            digitalWrite(Led8, HIGH); 
         }
     }
 
-    delay(10); // Adjust delay as needed
+    delay(10); // Adjust delay 
 }
